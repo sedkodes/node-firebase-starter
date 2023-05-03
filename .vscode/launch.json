@@ -5,20 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Node TS debug full stack",
+      "type": "node-terminal",
       "request": "launch",
-      "name": "Launch Program 1",
-      "program": "${workspaceFolder}/src/server.ts",
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": ["${workspaceFolder}/build/**/*.js"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/src/server.ts",
-      "outFiles": ["${workspaceFolder}/**/*.js"]
+      "command": "npm run dev",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
     }
   ]
 }
