@@ -5,12 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "name": "Node TS debug full stack",
+      "type": "node-terminal",
       "request": "launch",
-      "name": "Live Debug",
-      "program": "${workspaceFolder}/src/server.ts",
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": ["${workspaceFolder}/build/**/*.js"]
+      "command": "npm run dev",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      }
     }
   ]
 }

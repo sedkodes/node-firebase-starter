@@ -1,4 +1,4 @@
-import { DatabaseUrls, User, UserStatus } from "./types"
+import { DatabaseUrls, User } from "./types"
 import * as admin from 'firebase-admin';
 
 // They already exist at this point in Firebase Auth, need to create
@@ -12,7 +12,7 @@ exports.createUser = async (req, res, next) => {
         id: userId,
         name: req.body.name,
         email: req.user.email,
-        status: UserStatus.NEW
+        roles: []
     }
 
     // Set the document ID to their authentication system UID
@@ -31,7 +31,7 @@ exports.createUser = async (req, res, next) => {
     res.json({ result: `ok` });
 }
 
-exports.getUser = async (req, res, next) => {
+exports.getUser = async (req, res, next) => {    
     let user: User = await getUserByUserId(req.user.user_id)
     if (!user) {
         res.status(500).send("Error finding user.")
@@ -81,7 +81,7 @@ export async function getUserByUserId(userId: string): Promise<User> {
         id: undefined,
         name: undefined,
         email: undefined,
-        status: undefined,
+        roles: [],
         ...userDoc.data(),
     }
 
