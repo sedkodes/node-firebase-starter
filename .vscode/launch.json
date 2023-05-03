@@ -7,18 +7,10 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program 1",
+      "name": "Live Debug",
       "program": "${workspaceFolder}/src/server.ts",
       "preLaunchTask": "tsc: build - tsconfig.json",
       "outFiles": ["${workspaceFolder}/build/**/*.js"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/src/server.ts",
-      "outFiles": ["${workspaceFolder}/**/*.js"]
     }
   ]
 }
