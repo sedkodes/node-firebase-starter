@@ -1,0 +1,29 @@
+name: Deploy Backend to Prod
+on:
+  release:
+    types: [published]
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+jobs:
+  deploy:
+    name: Deploy To Prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: >
+          flyctl deploy --remote-only
+          -a bitfund-backend-prod
+          -e SECRET=${{ secrets.PROD_SECRET }}
+          -e PLAID_CLIENT_ID=${{ secrets.PROD_PLAID_CLIENT_ID }}
+          -e PLAID_SECRET=${{ secrets.PROD_PLAID_SECRET }}
+          -e PLAID_ENV=${{ secrets.PROD_PLAID_ENV }}
+          -e ALPACA_BROKER_HOST=${{ secrets.PROD_ALPACA_BROKER_HOST }}
+          -e ALPACA_BROKER_KEY=${{ secrets.PROD_ALPACA_BROKER_KEY }}
+          -e ALPACA_BROKER_SECRET=${{ secrets.PROD_ALPACA_BROKER_SECRET }}
+          -e FIREBASE_PROJECTID=${{ secrets.PROD_FIREBASE_PROJECTID }}
+          -e FIREBASE_PRIVATEKEY_B64=${{ secrets.PROD_FIREBASE_PRIVATEKEY_B64 }}
+          -e FIREBASE_CLIENTEMAIL=${{ secrets.PROD_FIREBASE_CLIENTEMAIL }}
+          -e RELEASE=${{ github.event.release.tag_name }}

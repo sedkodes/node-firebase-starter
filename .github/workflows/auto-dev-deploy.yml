@@ -1,0 +1,30 @@
+name: Deploy Backend to Shared Dev Environment
+on: 
+  push:
+    branches:
+      - main
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+jobs:
+  deploy:
+    name: Deploy To Dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: >
+          flyctl deploy --remote-only
+          -a bitfund-backend
+          -e SECRET=${{ secrets.SECRET }}
+          -e PLAID_CLIENT_ID=${{ secrets.PLAID_CLIENT_ID }}
+          -e PLAID_SECRET=${{ secrets.PLAID_SECRET }}
+          -e PLAID_ENV=${{ secrets.PLAID_ENV }}
+          -e ALPACA_BROKER_HOST=${{ secrets.ALPACA_BROKER_HOST }}
+          -e ALPACA_BROKER_KEY=${{ secrets.ALPACA_BROKER_KEY }}
+          -e ALPACA_BROKER_SECRET=${{ secrets.ALPACA_BROKER_SECRET }}
+          -e FIREBASE_PROJECTID=${{ secrets.FIREBASE_PROJECTID }}
+          -e FIREBASE_PRIVATEKEY_B64=${{ secrets.FIREBASE_PRIVATEKEY_B64 }}
+          -e FIREBASE_CLIENTEMAIL=${{ secrets.FIREBASE_CLIENTEMAIL }}
+          -e RELEASE=DEV-${{ github.sha }}
