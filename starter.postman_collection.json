@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Firebase - Sign In Copy",
+			"name": "Firebase - Sign In",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -42,115 +42,10 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "Sign Into Firebase",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"mypassword\",\n  \"returnSecureToken\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAiZKOA-jsZGhzFIOvJ0GlUwE1lj7tmC08",
-							"protocol": "https",
-							"host": [
-								"www",
-								"googleapis",
-								"com"
-							],
-							"path": [
-								"identitytoolkit",
-								"v3",
-								"relyingparty",
-								"verifyPassword"
-							],
-							"query": [
-								{
-									"key": "key",
-									"value": "AIzaSyAiZKOA-jsZGhzFIOvJ0GlUwE1lj7tmC08"
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, no-store, max-age=0, must-revalidate"
-						},
-						{
-							"key": "Pragma",
-							"value": "no-cache"
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 23 Apr 2022 20:40:25 GMT"
-						},
-						{
-							"key": "Expires",
-							"value": "Mon, 01 Jan 1990 00:00:00 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=UTF-8"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Vary",
-							"value": "X-Origin"
-						},
-						{
-							"key": "Vary",
-							"value": "Referer"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Server",
-							"value": "ESF"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Alt-Svc",
-							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"kind\": \"identitytoolkit#VerifyPasswordResponse\",\n    \"localId\": \"xwybn4SQD4NLz6xuO9LDqdgMO802\",\n    \"email\": \"test@test.com\",\n    \"displayName\": \"\",\n    \"idToken\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6ImM2NzNkM2M5NDdhZWIxOGI2NGU1OGUzZWRlMzI1NWZiZjU3NTI4NWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYml0c2F2ZS01NzgzYyIsImF1ZCI6ImJpdHNhdmUtNTc4M2MiLCJhdXRoX3RpbWUiOjE2NTA3NDY0MjUsInVzZXJfaWQiOiJ4d3libjRTUUQ0Tkx6Nnh1TzlMRHFkZ01PODAyIiwic3ViIjoieHd5Ym40U1FENE5MejZ4dU85TERxZGdNTzgwMiIsImlhdCI6MTY1MDc0NjQyNSwiZXhwIjoxNjUwNzUwMDI1LCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsidGVzdEB0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.ce7xI9cOdprvdAaezsfttgyMQEFqeGQdT1fezJKhRCNpzCDVXVwPBbkk08sS4j6_L-tapIrqHj3RvDkgDKjCe82Y4au4M5ghWOdEE2WAjzzayPEfa9q8DdpS07d6hbXqp7uv4QoU1w5gpSqOgZu7P8tR7isXd0s9EszBh4NBwjw9cIy5h6qS-GwkyNVaYbOcp8s8P_Gz-DAld5l9YEpVLVXAPKe4tskTy4obBF3IrcPK98WCStwy7RmukrjpB3EcMY8NMP7YptoTvLi6SM5SzTvGd_e7APJG4NYclOyinjkSa_zVtniGTVpe8zY-uy60sr3kDDpRsrhzLxFeip90Tw\",\n    \"registered\": true,\n    \"refreshToken\": \"AIwUaOmYUn6bHkLLvJHlafP3Gmwn-Lu4qPlDzCKU79vmRzwJNCknZ0Xlof-CArPGapspezUZkcOpTIJKSXeZTfdw1qANlECPIujLz-bP47hBkD0RGmUHQHVMaoJw-36kSkv74oDYcIAIjD8ZMJ-bI5gbjtVog0btm1hX9yYeAz0JBQaKrhT6tAplqhXDdp6fM5oosxtvStUZ\",\n    \"expiresIn\": \"3600\"\n}"
-				}
-			]
+			"response": []
 		},
 		{
-			"name": "Create User Copy",
+			"name": "Create User",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -189,7 +84,7 @@
 			"response": []
 		},
 		{
-			"name": "Get User Copy",
+			"name": "Get User",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -209,87 +104,7 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "Get User",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{IDTOKEN}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Sedky Abou-Shamalah\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://{{APIHOST}}/api/users",
-							"protocol": "http",
-							"host": [
-								"{{APIHOST}}"
-							],
-							"path": [
-								"api",
-								"users"
-							],
-							"query": [
-								{
-									"key": null,
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "X-Powered-By",
-							"value": "Express"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "254"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"fe-1zDxdV87quIz+U4wOcz+oukTXbE\""
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 08 May 2022 14:45:00 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"id\": \"xwybn4SQD4NLz6xuO9LDqdgMO802\",\n    \"name\": \"Sedky Abou-Shamalah\",\n    \"email\": \"test@test.com\",\n    \"balances\": {\n        \"cashAvailable\": 4900.9992284,\n        \"btc\": 0.0012,\n        \"btcAvailable\": 0.00039999999999999986,\n        \"cash\": 4951.9992284\n    },\n    \"plaidAccessToken\": \"access-sandbox-6a5232e5-5770-4c00-988b-d19ab6c04f7c\"\n}"
-				}
-			]
+			"response": []
 		}
 	]
 }
