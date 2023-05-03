@@ -39,7 +39,7 @@ app.use(bodyParser.json({
 app.use(morgan('combined'))
 
 // Setup Routes 
-import * as users from './users'
+const users = require('./users')
 const cronjobs = require('./cronjob')
 
 // User Routes
