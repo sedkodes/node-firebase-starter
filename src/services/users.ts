@@ -1,9 +1,10 @@
-import { DatabaseUrls, User } from "./types"
+import { DatabaseUrls, User } from "../types/types"
 import * as admin from 'firebase-admin';
+import db from "../utils/db";
 
 // They already exist at this point in Firebase Auth, need to create
 // record in Firebase Database in order to add business logic
-exports.createUser = async (req, res, next) => {
+export async function createUser(req, res, next){
 
     // Get user info
     const userId = req.user.user_id
@@ -16,22 +17,13 @@ exports.createUser = async (req, res, next) => {
     }
 
     // Set the document ID to their authentication system UID
-    var newTransactionRecord = admin.firestore().collection(DatabaseUrls.USERS).doc(userId)
-
-    try {    
-        // Add the new order transaction into Database
-        await newTransactionRecord.create(user);
-    } catch (e) {
-        console.error("Error creating user: ", e)
-        res.status(500).send("Error creating user.")
-        return
-    }
+    await db.users.doc(userId).create(user)
     
     // Send OK
     res.json({ result: `ok` });
 }
 
-exports.getUser = async (req, res, next) => {    
+export async function getUser(req, res, next){    
     let user: User = await getUserByUserId(req.user.user_id)
     if (!user) {
         res.status(500).send("Error finding user.")
@@ -44,7 +36,7 @@ exports.getUser = async (req, res, next) => {
 // Get all users in the system.
 export async function getAllusers(): Promise<User[]> {
     
-    const usersRefSnapshot = await admin.firestore().collection(DatabaseUrls.USERS).get()
+    const usersRefSnapshot = await db.users.get()
     if (!usersRefSnapshot) {
         console.info('No users found.');
         return [];
@@ -66,32 +58,17 @@ export async function getAllusers(): Promise<User[]> {
 }
 
 export async function getUserByUserId(userId: string): Promise<User> {
-    let userDoc = await admin.firestore()
-        .collection(DatabaseUrls.USERS)
-        .doc(userId)
-        .get()
+    let userDoc = await db.users.doc(userId).get()
 
     if (!userDoc.exists) {
         console.error('No such document!');
         return null
     }
 
-    // Typescript workaround
-    const user: User = {
-        id: undefined,
-        name: undefined,
-        email: undefined,
-        roles: [],
-        ...userDoc.data(),
-    }
-
-    return user
+    return userDoc.data()
 }
 
 // Only updates fields that are provided
 export async function patchUser(userId: string, userObject: any) {
-    await admin.firestore()
-    .collection(DatabaseUrls.USERS)
-    .doc(userId)
-    .update(userObject) 
+    await db.users.doc(userId).update(userObject) 
 }

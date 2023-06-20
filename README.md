@@ -19,3 +19,16 @@ FIRESTORE_EMULATOR_HOST=localhost:8080
 Any commits to `main` branch trigger an automatic deployment via GitHub workflow
 
 
+## Build Dockerfile
+
+```
+$ docker build . -t firebase-nodets-starter:v1.0.0 && \
+    
+    docker run -d \
+    --restart=on-failure \
+    --name=firebase-nodets-starter \
+    -v /home/ec2-user/firebase-nodets-starter/.env:/usr/app/.env \
+    -p 80:8081 \
+    firebase-nodets-starter:v1.0.0
+
+```

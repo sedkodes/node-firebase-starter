@@ -13,42 +13,36 @@ admin.initializeApp({
   })
 });
 
-// Start the broker event listener
-// require('./orders-event-listener')
+// Initialize API Server
+const express =     require("express");
+const app =         express();
+const cors =        require("cors");
+const bodyParser =  require("body-parser");
+const session =     require("express-session");
 
-// Setup API Server
-const express = require("express");
-const app = express();
-
-const cors = require("cors");
-const bodyParser = require("body-parser");
-
-const session = require("express-session");
-
+// Express settings
 app.use(cors())
 app.use(session({
   secret: process.env.SECRET,
   saveUninitialized: true,
   resave: true,
 }))
-
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json({
-  limit: '15mb'
-}))
+app.use(bodyParser.json({limit: '15mb'}))
 app.use(morgan('combined'))
 
-// Setup Routes 
-const users = require('./users')
-const cronjobs = require('./cronjob')
+const port = process.env.PORT || 8081;
+app.listen(port)
+console.info(`Listening on : ${port}`)
+
+// Initialize Routes 
+import {  createUser, getUser, getAllusers } from './services/users'
 
 // User Routes
-app.post("/api/users", isAuthenticated, users.createUser)
-app.get("/api/users", isAuthenticated, users.getUser)
-
+app.post("/api/users", isAuthenticated, createUser)
+app.get("/api/users", isAuthenticated, getUser)
 // Admin APIs
-app.post("/api/admin/cronjob", isAdminAuthenticated, cronjobs.createCronjob)
-
+app.post("/api/users/patch", isAdminAuthenticated, getAllusers)
 // Health Check
 app.get("/api/health", (_req, res) => {
   const data = {
@@ -60,9 +54,3 @@ app.get("/api/health", (_req, res) => {
 
   res.status(200).send(data);
 });
-
-const port = process.env.PORT || 8081;
-app.listen(port)
-
-console.info(`Listening on : ${port}`)
-

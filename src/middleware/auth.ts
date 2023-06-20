@@ -21,8 +21,8 @@ export const isAuthenticated = (req, res, next) => {
             // console.log(authToken)
 
             const userInfo = await admin
-                .auth()
-                .verifyIdToken(authToken);
+                                    .auth()
+                                    .verifyIdToken(authToken);
 
             // console.log(userInfo) 
             // {
@@ -55,14 +55,15 @@ export const isAuthenticated = (req, res, next) => {
 export const isAdminAuthenticated = (req, res, next) => {
     getAuthToken(req, res, async () => {
         const { authToken } = req;
-            if (authToken == process.env.SECRET) {
-                return next();
-            }   
 
-            console.warn("someone is doing funky shit with auth token: ", authToken)
+        if (authToken == process.env.SECRET) {
+            return next();
+        }   
 
-            return res
-                .status(401)
-                .send({ error: 'You are not authorized to make this request' });
+        console.warn("someone is doing funky stuff, auth token: ", authToken)
+
+        return res
+            .status(401)
+            .send({ error: 'You are not authorized to make this request' });
     });
 };
