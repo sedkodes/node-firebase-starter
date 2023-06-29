@@ -1,5 +1,4 @@
-import { DatabaseUrls, User } from "../types/types"
-import * as admin from 'firebase-admin';
+import { User } from "../types/types"
 import db from "../utils/db";
 
 // They already exist at this point in Firebase Auth, need to create
